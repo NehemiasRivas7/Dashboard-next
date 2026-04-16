@@ -7,7 +7,11 @@ import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 
  
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require',
+    connection: {
+    options: `project=ep-tiny-cloud-a4jxhvqm-pooler`
+  }
+ });
  
 async function getUser(email: string): Promise<User | undefined> {
   try {
